@@ -1192,7 +1192,15 @@ async function renderQrInto(hostEl, text){
   img.src = dataUrl;
   hostEl.appendChild(img);
 }
-
+function buildQrUrl(r){
+  // Pega aquí entre las comillas tu enlace de Google Apps Script que termina en /exec
+  const appsScriptUrl = "https://script.google.com/macros/s/AKfycbwyr9XJKCKpzxxs1SFCLOeA287iw6ckdzlRTAOtLhA4WMaJLopTp6w12p17TCQgVj-IHQ/exec";
+  
+  // Toma el código o ID del estudiante para pasarlo por parámetro (?id=...)
+  const idAlumno = r[COLMAP.codigo] || r[COLMAP.cui] || r.__row;
+  
+  return `${appsScriptUrl}?id=${encodeURIComponent(idAlumno)}`;
+}
 /* ============ CARD HTML BUILDER ============ */
 function cardHtml(r, idx){
   const photo = photoSrcFor(r);
