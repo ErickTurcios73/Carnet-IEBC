@@ -1094,23 +1094,11 @@ function b64UrlDecode(str){
 }
 
 function buildQrUrl(r){
-  if(!SHEET_ID) return 'https://docs.google.com';
-  // Modo nuevo: página propia de verificación — busca por CÓDIGO del alumno vía gviz/tq, no por número de fila.
-  if(VERIFY_BASE_URL){
-    const payload = {
-      s: SHEET_ID, g: SHEET_GID,
-      code: String(r[COLMAP.codigo] || ''),
-      hc: COLMAP.codigo, hn: COLMAP.nombre, hg: COLMAP.grado, hs: COLMAP.seccion, hf: COLMAP.foto
-    };
-    const base = VERIFY_BASE_URL.replace(/\/+$/,'');
-    return `${base}?d=${b64UrlEncode(payload)}`;
-  }
-  // Respaldo: enlace directo a la fila en Google Sheet (requiere permisos de Lector)
-  const targetRow = r.__row + ROW_OFFSET;
-  if($('qrMode').value === 'pubhtml'){
-    return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/pubhtml?gid=${SHEET_GID}&range=A${targetRow}:Z${targetRow}&single=true&widget=false&chrome=false`;
-  }
-  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit#gid=${SHEET_GID}&range=A${targetRow}:Z${targetRow}`;
+  const appsScriptUrl = "https://script.google.com/macros/s/AKfycbzc4hdUn6rPPXWAh-4mMT55bVwFjnIdwP-IrcAyijuOX78EBUBxze72gufBWkTqsE05PQ/exec";
+  
+  const idAlumno = r[COLMAP.codigo] || r[COLMAP.cui] || r.__row;
+  
+  return `${appsScriptUrl}?id=${encodeURIComponent(idAlumno)}`;
 }
 
 /* ============ QR: render nítido con escudo al centro ============ */
