@@ -1093,7 +1093,7 @@ function b64UrlDecode(str){
   return JSON.parse(json);
 }
 function buildQrUrl(r){
-  const appsScriptUrl = "https://script.google.com/macros/s/AKfycblL4Z7hMwykG8fPpxYDI7iUADmYAhYL_VxoEiH7e2DpUcNPf6hL0azTJPYzX3SIaEMcWg/exec";
+  const appsScriptUrl = "https://script.google.com/macros/s/AKfycby-hW8XyKhfpZRJWn8BLnUiVCifPld3EIUHIOF2KTP--WlxVmDNeqARo0n4w_sThb7ehQ/exec";
   
   // Tomamos la clave primero (ej. TA03), luego código o fila como respaldo
   const idAlumno = r[COLMAP.clave] || r['Clave'] || r['clave'] || r[COLMAP.codigo] || r[COLMAP.id] || r.__row;
