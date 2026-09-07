@@ -1180,9 +1180,8 @@ async function renderQrInto(hostEl, text){
   hostEl.appendChild(img);
 }
 function buildQrUrl(r){
-  const appsScriptUrl = "https://script.google.com/macros/s/AKfycblL4Z7hMwykG8fPpxYDI7iUADmYAhYL_VxoEiH7e2DpUcNPf6hL0azTJPYzX3SIaEMcWg/exec";
+  const appsScriptUrl = "https://script.google.com/macros/s/AKfycbzpDYBedr6FqcX-QOCpogtXRQNRa1tlqW8N7mb4CT_gpCd4y1esDBOVYopT5HLsxGNvLg/exec";
   
-  // Prioriza la clave (ej. TA01, TA03), y deja el código o fila como respaldo
   const idAlumno = r['Clave'] || r['clave'] || r[COLMAP.clave] || r[COLMAP.codigo] || r.__row;
   
   return `${appsScriptUrl}?id=${encodeURIComponent(idAlumno)}`;
